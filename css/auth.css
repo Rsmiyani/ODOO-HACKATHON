@@ -20,7 +20,7 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #9B8B7E 0%, #7A6B5D 100%);
+    background: linear-gradient(135deg, #C9BDB0 0%, #B8AC9F 100%);
     min-height: 100vh;
     height: 100vh;
     display: flex;
@@ -89,17 +89,6 @@ body::after {
     position: relative;
     z-index: 10;
     animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.auth-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #6B5B95 0%, #009B95 100%);
-    border-radius: 24px 24px 0 0;
 }
 
 @keyframes slideUp {
