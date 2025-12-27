@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2025 at 08:05 AM
+-- Generation Time: Dec 27, 2025 at 11:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -75,7 +75,9 @@ INSERT INTO `equipment` (`id`, `equipment_name`, `serial_number`, `category`, `d
 (2, 'Laptop Dell Latitude 5420', 'DELL-LAP-001', 'IT Equipment', 'IT Department', 'Priya Shah', '2024-06-20', '2027-06-20', 'Office - Desk 15', 3, 2, 'scrapped', NULL, '2025-12-27 03:50:28', '2025-12-27 05:12:32'),
 (3, 'Industrial Printer HP M507', 'HP-PRINT-2024-001', 'Office Equipment', 'Administration', NULL, '2024-03-10', '2025-03-10', 'Admin Office', 2, 3, 'scrapped', NULL, '2025-12-27 03:50:28', '2025-12-27 04:23:58'),
 (4, 'Forklift Toyota 8FD25', 'FORK-2023-045', 'Heavy Equipment', 'Warehouse', 'Ramesh Kumar', '2023-11-01', '2025-11-01', 'Warehouse Zone A', 1, 2, 'scrapped', NULL, '2025-12-27 03:50:28', '2025-12-27 05:12:35'),
-(5, 'Jumbo Machine', 'SN-00299', 'IT Equipment', 'IT', 'Rudra', '2025-12-25', '2027-11-30', 'Rajkot', 2, 2, 'active', NULL, '2025-12-27 05:54:46', '2025-12-27 05:54:46');
+(5, 'Jumbo Machine', 'SN-00299', 'IT Equipment', 'IT', 'Rudra', '2025-12-25', '2027-11-30', 'Rajkot', 2, 2, 'scrapped', NULL, '2025-12-27 05:54:46', '2025-12-27 09:34:04'),
+(6, 'Jumbo Machine  1', 'SN-00298', 'IT Equipment', 'Production', '', '2026-01-05', '2028-09-27', 'Rajkot', 3, 7, 'under_maintenance', NULL, '2025-12-27 10:09:53', '2025-12-27 10:10:44'),
+(7, 'cNC machine model2200', 'SN-00293', 'Office Equipment', 'Production', 'Rudra', '2025-12-26', '2026-01-28', 'Rajkot', 4, 4, 'active', NULL, '2025-12-27 10:20:06', '2025-12-27 10:20:06');
 
 -- --------------------------------------------------------
 
@@ -145,7 +147,31 @@ INSERT INTO `login_attempts` (`id`, `user_id`, `email`, `ip_address`, `user_agen
 (26, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 06:29:10'),
 (27, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 06:36:35'),
 (28, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 06:41:38'),
-(29, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 06:52:18');
+(29, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 06:52:18'),
+(30, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 07:47:28'),
+(31, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 08:05:01'),
+(32, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 08:20:25'),
+(33, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 08:24:29'),
+(34, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 09:11:00'),
+(35, 6, 'rudramiyani2006@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 09:11:23'),
+(36, 6, 'rudramiyani2006@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 09:12:11'),
+(37, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 09:12:26'),
+(38, 8, 'rudramiyani2009@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 09:30:10'),
+(39, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 09:32:26'),
+(40, 8, 'rudramiyani2009@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 09:32:55'),
+(41, 8, 'rudramiyani2009@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 09:57:49'),
+(42, 8, 'rudramiyani2009@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:08:27'),
+(43, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:08:51'),
+(44, 8, 'rudramiyani2009@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:10:02'),
+(45, 7, 'rudramiyani2007@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:12:37'),
+(46, 6, 'rudramiyani2006@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:15:32'),
+(47, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:16:07'),
+(48, 8, 'rudramiyani2009@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:23:14'),
+(49, 8, 'rudramiyani2009@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:23:25'),
+(50, 7, 'rudramiyani2007@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:25:02'),
+(51, 7, 'rudramiyani2007@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:29:07'),
+(52, 6, 'rudramiyani2006@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:29:14'),
+(53, 5, 'rudramiyani2008@gmail.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 1, '2025-12-27 10:30:11');
 
 -- --------------------------------------------------------
 
@@ -178,12 +204,15 @@ CREATE TABLE `maintenance_requests` (
 
 INSERT INTO `maintenance_requests` (`id`, `subject`, `description`, `equipment_id`, `request_type`, `stage`, `priority`, `scheduled_date`, `completed_date`, `duration_hours`, `assigned_to`, `created_by`, `is_overdue`, `notes`, `created_at`, `updated_at`) VALUES
 (1, 'Oil Leakage Issue', 'CNC machine is leaking oil from the hydraulic system. Needs immediate attention.', 1, 'corrective', 'repaired', 'high', '2025-12-27 09:20:28', NULL, NULL, 2, 1, 0, NULL, '2025-12-27 03:50:28', '2025-12-27 05:30:29'),
-(2, 'Routine Laptop Checkup', 'Quarterly maintenance check for laptop - clean internals, update software, check battery health.', 2, 'preventive', 'scrap', 'low', '2025-01-15 10:00:00', NULL, NULL, 2, 1, 0, NULL, '2025-12-27 03:50:28', '2025-12-27 06:17:39'),
+(2, 'Routine Laptop Checkup', 'Quarterly maintenance check for laptop - clean internals, update software, check battery health.', 2, 'preventive', 'repaired', 'low', '2025-01-15 10:00:00', NULL, NULL, 2, 1, 0, NULL, '2025-12-27 03:50:28', '2025-12-27 10:20:24'),
 (3, 'Printer Paper Jam', 'Printer frequently jamming. Needs inspection and cleaning.', 3, 'corrective', 'repaired', 'medium', '2025-12-27 09:20:28', NULL, NULL, 3, 4, 0, NULL, '2025-12-27 03:50:28', '2025-12-27 06:44:26'),
 (4, 'Forklift Annual Service', 'Annual preventive maintenance service for forklift as per manufacturer guidelines.', 4, 'preventive', 'repaired', 'medium', '2025-01-20 09:00:00', NULL, NULL, 2, 4, 0, NULL, '2025-12-27 03:50:28', '2025-12-27 05:52:11'),
 (5, 'leaking oil', 'oil is leaking in factory', 2, 'corrective', 'in_progress', 'high', '2025-12-28 09:58:00', NULL, NULL, 3, 5, 0, NULL, '2025-12-27 04:28:43', '2025-12-27 06:46:38'),
-(6, 'bunker leaking', 'bunkr', 1, 'corrective', 'repaired', 'low', '2025-12-31 10:03:00', NULL, NULL, 6, 7, 0, NULL, '2025-12-27 04:33:54', '2025-12-27 05:56:07'),
-(7, 'stucking', 'maching is not working properly', 5, 'preventive', 'repaired', 'low', '2026-01-10 11:50:00', NULL, NULL, 6, 6, 0, NULL, '2025-12-27 06:20:12', '2025-12-27 06:45:12');
+(6, 'bunker leaking', 'bunkr', 1, 'corrective', 'new', 'low', '2025-12-31 10:03:00', NULL, NULL, 6, 7, 0, NULL, '2025-12-27 04:33:54', '2025-12-27 10:29:44'),
+(7, 'stucking', 'maching is not working properly', 5, 'preventive', 'in_progress', 'low', '2026-01-10 11:50:00', NULL, NULL, 6, 6, 0, NULL, '2025-12-27 06:20:12', '2025-12-27 10:29:49'),
+(8, 'leaking water', '', 5, 'corrective', 'new', 'medium', '2025-12-27 21:02:00', NULL, NULL, NULL, 8, 0, NULL, '2025-12-27 09:32:10', '2025-12-27 10:25:59'),
+(9, 'water lakage', 'cfsf', 6, 'corrective', 'new', 'low', '2025-12-28 15:40:00', NULL, NULL, NULL, 8, 0, NULL, '2025-12-27 10:10:44', '2025-12-27 10:26:22'),
+(10, 'oil lekage', 'sfgasgfiu', 7, 'preventive', 'in_progress', 'low', '2025-12-31 15:54:00', NULL, NULL, NULL, 8, 0, NULL, '2025-12-27 10:24:15', '2025-12-27 10:26:29');
 
 -- --------------------------------------------------------
 
@@ -281,7 +310,40 @@ INSERT INTO `request_history` (`id`, `request_id`, `user_id`, `action`, `old_val
 (48, 7, 6, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 06:20:18'),
 (49, 3, 5, 'Stage changed', NULL, 'Repaired', NULL, '2025-12-27 06:44:26'),
 (50, 7, 5, 'Stage changed', NULL, 'Repaired', NULL, '2025-12-27 06:45:12'),
-(51, 5, 5, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 06:46:38');
+(51, 5, 5, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 06:46:38'),
+(52, 7, 6, 'Stage changed', NULL, 'New', NULL, '2025-12-27 09:12:15'),
+(53, 8, 8, 'created', NULL, 'Request created', NULL, '2025-12-27 09:32:10'),
+(54, 7, 5, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 09:32:48'),
+(55, 8, 8, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 09:34:01'),
+(56, 8, 8, 'Stage changed', NULL, 'New', NULL, '2025-12-27 09:34:02'),
+(57, 8, 8, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 09:34:03'),
+(58, 8, 8, 'Stage changed', NULL, 'Repaired', NULL, '2025-12-27 09:34:04'),
+(59, 8, 8, 'Equipment marked as scrap', NULL, 'Scrapped', NULL, '2025-12-27 09:34:04'),
+(60, 8, 8, 'Stage changed', NULL, 'Scrap', NULL, '2025-12-27 09:34:04'),
+(61, 8, 8, 'Stage changed', NULL, 'New', NULL, '2025-12-27 09:34:05'),
+(62, 8, 8, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 09:39:34'),
+(63, 8, 8, 'Stage changed', NULL, 'New', NULL, '2025-12-27 09:39:35'),
+(64, 9, 8, 'created', NULL, 'Request created', NULL, '2025-12-27 10:10:44'),
+(65, 9, 8, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 10:10:53'),
+(66, 8, 8, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 10:11:04'),
+(67, 8, 8, 'Stage changed', NULL, 'New', NULL, '2025-12-27 10:11:08'),
+(68, 9, 8, 'Stage changed', NULL, 'New', NULL, '2025-12-27 10:11:10'),
+(69, 9, 7, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 10:13:38'),
+(70, 7, 6, 'Stage changed', NULL, 'Repaired', NULL, '2025-12-27 10:15:53'),
+(71, 2, 5, 'Stage changed', NULL, 'Repaired', NULL, '2025-12-27 10:20:24'),
+(72, 10, 8, 'created', NULL, 'Request created', NULL, '2025-12-27 10:24:15'),
+(73, 8, 7, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 10:25:55'),
+(74, 8, 7, 'Stage changed', NULL, 'New', NULL, '2025-12-27 10:25:56'),
+(75, 8, 7, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 10:25:57'),
+(76, 10, 7, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 10:25:58'),
+(77, 8, 7, 'Stage changed', NULL, 'New', NULL, '2025-12-27 10:25:59'),
+(78, 10, 7, 'Stage changed', NULL, 'New', NULL, '2025-12-27 10:26:21'),
+(79, 9, 7, 'Stage changed', NULL, 'New', NULL, '2025-12-27 10:26:22'),
+(80, 10, 7, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 10:26:29'),
+(81, 7, 6, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 10:29:42'),
+(82, 6, 6, 'Stage changed', NULL, 'New', NULL, '2025-12-27 10:29:44'),
+(83, 7, 6, 'Stage changed', NULL, 'New', NULL, '2025-12-27 10:29:45'),
+(84, 7, 6, 'Stage changed', NULL, 'In progress', NULL, '2025-12-27 10:29:49');
 
 -- --------------------------------------------------------
 
@@ -304,7 +366,10 @@ INSERT INTO `team_members` (`id`, `team_id`, `user_id`, `joined_at`) VALUES
 (1, 1, 2, '2025-12-27 03:50:28'),
 (2, 2, 3, '2025-12-27 03:50:28'),
 (3, 3, 2, '2025-12-27 03:50:28'),
-(4, 4, 3, '2025-12-27 06:47:08');
+(4, 4, 3, '2025-12-27 06:47:08'),
+(5, 2, 2, '2025-12-27 10:13:10'),
+(6, 2, 6, '2025-12-27 10:27:18'),
+(7, 2, 4, '2025-12-27 10:27:38');
 
 -- --------------------------------------------------------
 
@@ -317,7 +382,7 @@ CREATE TABLE `users` (
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('admin','manager','technician') DEFAULT 'technician',
+  `role` enum('admin','manager','technician','user') NOT NULL DEFAULT 'user',
   `avatar` varchar(255) DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT 1,
   `failed_attempts` int(11) DEFAULT 0,
@@ -340,9 +405,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `avatar`, `is_ac
 (2, 'Rudra Miyani', 'rudra@gearguard.com', '$argon2id$v=19$m=65536,t=4,p=1$VGhpc0lzQVNhbHRWYWx1ZQ$xqr8dqJqL+8KqH1pZqL+8KqH1pZqL+8KqH1pZqL+8', 'technician', NULL, 1, 0, NULL, NULL, 1, NULL, NULL, NULL, '2025-12-27 03:50:28', '2025-12-27 03:50:28'),
 (3, 'Rajdeepsinh Jadeja', 'rajdeep@gearguard.com', '$argon2id$v=19$m=65536,t=4,p=1$VGhpc0lzQVNhbHRWYWx1ZQ$xqr8dqJqL+8KqH1pZqL+8KqH1pZqL+8KqH1pZqL+8', 'technician', NULL, 1, 0, NULL, NULL, 1, NULL, NULL, NULL, '2025-12-27 03:50:28', '2025-12-27 03:50:28'),
 (4, 'John Manager', 'manager@gearguard.com', '$argon2id$v=19$m=65536,t=4,p=1$VGhpc0lzQVNhbHRWYWx1ZQ$xqr8dqJqL+8KqH1pZqL+8KqH1pZqL+8KqH1pZqL+8', 'manager', NULL, 1, 0, NULL, NULL, 1, NULL, NULL, NULL, '2025-12-27 03:50:28', '2025-12-27 03:50:28'),
-(5, 'Rudra Miyani', 'rudramiyani2008@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$N2daS25wdjJJSHpFUHZ1ag$I7ckB0OPsTIX+5eYMrFwRlRYezTNF+PGAV2EE5XooI0', 'admin', NULL, 1, 0, NULL, '2025-12-27 12:22:18', 0, 'ac6021e4e5a9f7b15bf2fd6931e052b336256ad324e4471cee5394877911ccfa', NULL, NULL, '2025-12-27 04:11:48', '2025-12-27 06:52:18'),
-(6, 'Rudra Miyani', 'rudramiyani2006@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$dmdJemhGNWg5RnJBMXQ2Vg$GZ08QTb8aMwKu+vbenVqOG9P8Zt/UbbGSIUNn/dGrps', 'technician', NULL, 1, 0, NULL, '2025-12-27 11:49:19', 0, 'd182ee2af4dab8c4cf4ab7fa5ff25727d20f605f30cf0003bcfd9d2bdf55887d', NULL, NULL, '2025-12-27 04:12:29', '2025-12-27 06:19:19'),
-(7, 'Rudra Miyani', 'rudramiyani2007@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$RnlNM3d6TWh2ck5lRXNvUQ$AZ7/1pnlxXoDd3Vmdg0hbmD1HDJjCmwbDt+NSz6NMfM', 'manager', NULL, 1, 0, NULL, '2025-12-27 09:58:56', 0, 'f8006812ac3486c5807b267d5180049784dd82f3a0916a9c3000ce2b584466a2', NULL, NULL, '2025-12-27 04:13:01', '2025-12-27 04:28:56');
+(5, 'Rudra Miyani', 'rudramiyani2008@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$N2daS25wdjJJSHpFUHZ1ag$I7ckB0OPsTIX+5eYMrFwRlRYezTNF+PGAV2EE5XooI0', 'admin', NULL, 1, 0, NULL, '2025-12-27 16:00:11', 0, 'ac6021e4e5a9f7b15bf2fd6931e052b336256ad324e4471cee5394877911ccfa', NULL, NULL, '2025-12-27 04:11:48', '2025-12-27 10:30:11'),
+(6, 'Rudra Miyani', 'rudramiyani2006@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$dmdJemhGNWg5RnJBMXQ2Vg$GZ08QTb8aMwKu+vbenVqOG9P8Zt/UbbGSIUNn/dGrps', 'technician', NULL, 1, 0, NULL, '2025-12-27 15:59:14', 0, 'd182ee2af4dab8c4cf4ab7fa5ff25727d20f605f30cf0003bcfd9d2bdf55887d', NULL, NULL, '2025-12-27 04:12:29', '2025-12-27 10:29:14'),
+(7, 'Rudra Miyani', 'rudramiyani2007@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$RnlNM3d6TWh2ck5lRXNvUQ$AZ7/1pnlxXoDd3Vmdg0hbmD1HDJjCmwbDt+NSz6NMfM', 'manager', NULL, 0, 0, NULL, '2025-12-27 15:59:07', 0, 'f8006812ac3486c5807b267d5180049784dd82f3a0916a9c3000ce2b584466a2', NULL, NULL, '2025-12-27 04:13:01', '2025-12-27 10:30:42'),
+(8, 'Rudra Miyani', 'rudramiyani2009@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$dE5jMWlPQTJTU1k3Yk1PZA$6DtYbZVffSqULzalZjS0PKSRLC3+sN8duUh9bmknjP8', 'user', NULL, 1, 0, NULL, '2025-12-27 15:53:25', 0, '7ad064efd01db21077800e3d8e00f13199a6976fc73fd13ced098d60e7b05885', NULL, NULL, '2025-12-27 09:30:01', '2025-12-27 10:23:25');
 
 -- --------------------------------------------------------
 
@@ -444,19 +510,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `equipment`
 --
 ALTER TABLE `equipment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `maintenance_requests`
 --
 ALTER TABLE `maintenance_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `maintenance_teams`
@@ -468,19 +534,19 @@ ALTER TABLE `maintenance_teams`
 -- AUTO_INCREMENT for table `request_history`
 --
 ALTER TABLE `request_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `team_members`
 --
 ALTER TABLE `team_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
