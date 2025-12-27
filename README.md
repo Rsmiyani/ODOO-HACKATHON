@@ -1,4 +1,4 @@
-  # 🛡️ GearGuard - The Ultimate Maintenance Tracker
+# 🛡️ GearGuard - The Ultimate Maintenance Tracker
 
 <div align="center">
 
@@ -46,8 +46,9 @@
 - **Smart Workflows**: Automated assignment and status tracking
 - **Team Collaboration**: Organize maintenance teams and assignments
 - **Visual Analytics**: Comprehensive reports with interactive charts
-- **Role-Based Access**: Secure permissions for Admin, Manager, and Technician roles
+- **Role-Based Access**: Secure permissions for Admin, Manager, Technician, and User roles
 - **Modern UI/UX**: Responsive design with drag-and-drop Kanban board
+- **User-Friendly**: Read-only Kanban view for regular users to track their requests
 
 ---
 
@@ -68,17 +69,21 @@
 - ✅ Duration and hours tracking
 - ✅ Request lifecycle management (New → In Progress → Repaired → Scrap)
 - ✅ Request history and audit trail
+- ✅ **User-created request tracking** - Users can view all their submitted requests
+- ✅ **Read-only Kanban board** for regular users to monitor request status
 
 ### 👥 Team Management
 - ✅ Create and manage maintenance teams
 - ✅ Add/remove team members
 - ✅ Team-based request assignment
 - ✅ Team performance tracking
+- ✅ **Team photos and social links** on landing page
 
 ### 📊 Visual Dashboards
-- ✅ **Kanban Board**: Drag-and-drop request management
+- ✅ **Kanban Board**: Drag-and-drop request management (Manager/Technician)
+- ✅ **Read-Only Kanban**: Non-draggable view for regular users
 - ✅ **Calendar View**: Schedule and visualize preventive maintenance
-- ✅ **Analytics Dashboard**: Real-time statistics and metrics
+- ✅ **Analytics Dashboard**: Real-time statistics for all roles including users
 - ✅ **Reports**: Interactive charts with Chart.js
   - Requests per Team (Bar Chart)
   - Requests per Category (Pie Chart)
@@ -88,16 +93,18 @@
 
 ### 👤 User Management (Admin Only)
 - ✅ User CRUD operations
-- ✅ Role assignment (Admin, Manager, Technician)
+- ✅ Role assignment (Admin, Manager, Technician, User)
+- ✅ **Default role set to "User"** during registration
 - ✅ Activate/Deactivate users
 - ✅ Track user activity and assigned requests
 
 ### 🔐 Security & Access Control
-- ✅ Role-based permissions system
+- ✅ **4-tier role-based permissions** system (Admin/Manager/Technician/User)
 - ✅ CSRF protection
 - ✅ Password hashing (bcrypt)
 - ✅ SQL injection prevention (PDO prepared statements)
 - ✅ XSS protection
+- ✅ **Role-specific UI restrictions** (CSS fixes for non-draggable cards)
 
 ### 🎨 User Experience
 - ✅ Responsive design (mobile, tablet, desktop)
@@ -106,6 +113,8 @@
 - ✅ Print-friendly views
 - ✅ Intuitive navigation
 - ✅ Visual status indicators
+- ✅ **Role-specific dashboard statistics**
+- ✅ **Enhanced landing page** with team photos and social links
 
 ---
 
@@ -147,7 +156,7 @@ Before you begin, ensure you have:
 
 ### Step 1: Clone the Repository
 
-git clone https://github.com/yourusername/gearguard.git
+git clone https://github.com/Rsmiyani/ODOO-HACKATHON.git
 cd gearguard
 
 text
@@ -176,6 +185,14 @@ define('DB_NAME', 'gearguard');
 define('DB_USER', 'your_username');
 define('DB_PASS', 'your_password');
 
+// Role Permissions (Updated with User role)
+$role_permissions = [
+'admin' => ['all'],
+'manager' => ['equipment', 'requests', 'teams', 'reports', 'calendar'],
+'technician' => ['requests', 'kanban'],
+'user' => ['create_request', 'view_requests', 'dashboard']
+];
+
 text
 
 ### Step 4: Set Permissions
@@ -189,7 +206,8 @@ text
 
 1. Start your web server (XAMPP/LAMP/WAMP)
 2. Navigate to: `http://localhost/gearguard`
-3. Default admin credentials:
+3. Register a new account (default role: **User**)
+4. Or use default admin credentials:
    - **Email**: admin@gearguard.com
    - **Password**: admin123
 
@@ -209,6 +227,7 @@ DB_USER=root
 DB_PASS=
 APP_ENV=production
 DEBUG_MODE=false
+DEFAULT_USER_ROLE=user
 
 text
 
@@ -233,7 +252,7 @@ text
 1. **User Management**: Add users and assign roles
 2. **System Configuration**: Manage teams and equipment
 3. **Reports**: Monitor system-wide performance
-4. **Permissions**: Control access levels
+4. **Permissions**: Control access levels for all 4 roles
 
 ### For Managers
 
@@ -251,19 +270,27 @@ text
 4. **Record Time**: Track hours spent on repairs
 5. **Create Requests**: Report new issues
 
+### For Users (Regular Employees)
+
+1. **Create Requests**: Report equipment breakdowns or issues
+2. **Track Requests**: View all their submitted requests on "All Requests" page
+3. **Monitor Status**: Check request progress on read-only Kanban board
+4. **Dashboard Access**: View personal statistics and recent activity
+5. **Equipment View**: See equipment assigned to them
+
 ---
 
 ## 📁 Project Structure
 
 gearguard/
 ├── 📄 index.php # Login page
-├── 📄 register.php # User registration
+├── 📄 register.php # User registration (default role: user)
 ├── 📄 logout.php # Logout handler
 ├── 📄 README.md # This file
 ├── 📄 LICENSE # MIT License
 │
 ├── 📂 php/
-│ ├── 📄 config.php # Database & app configuration
+│ ├── 📄 config.php # Database & role permissions config
 │ └── 📂 api/
 │ ├── 📄 create_user.php
 │ ├── 📄 update_user.php
@@ -272,14 +299,14 @@ gearguard/
 │ └── 📄 update_request_stage.php
 │
 ├── 📂 pages/
-│ ├── 📄 dashboard.php # Main dashboard
+│ ├── 📄 dashboard.php # Role-specific dashboard
 │ ├── 📄 equipment.php # Equipment list (with grouping)
 │ ├── 📄 add-equipment.php # Add new equipment
 │ ├── 📄 edit-equipment.php # Edit equipment
 │ ├── 📄 view-equipment.php # Equipment details
-│ ├── 📄 kanban.php # Kanban board
+│ ├── 📄 kanban.php # Kanban board (draggable for managers/technicians)
 │ ├── 📄 calendar.php # Calendar view
-│ ├── 📄 requests.php # Request list
+│ ├── 📄 requests.php # All requests (user: own requests only)
 │ ├── 📄 create-request.php # Create request
 │ ├── 📄 edit-request.php # Edit request
 │ ├── 📄 view-request.php # Request details
@@ -295,7 +322,7 @@ gearguard/
 │ ├── 📄 style.css # Login/Register styles
 │ ├── 📄 dashboard.css # Main dashboard styles
 │ ├── 📄 equipment.css # Equipment pages styles
-│ ├── 📄 kanban.css # Kanban board styles
+│ ├── 📄 kanban.css # Kanban board styles (non-draggable for users)
 │ ├── 📄 form.css # Form styles
 │ ├── 📄 view-equipment.css # Equipment detail styles
 │ ├── 📄 view-request.css # Request detail styles
@@ -303,7 +330,7 @@ gearguard/
 │ └── 📄 users.css # User management styles
 │
 ├── 📂 js/
-│ ├── 📄 dashboard.js # Main dashboard logic
+│ ├── 📄 dashboard.js # Role-specific dashboard logic
 │ ├── 📄 equipment.js # Equipment management
 │ ├── 📄 kanban.js # Kanban board functionality
 │ ├── 📄 create-request.js # Request creation logic
@@ -314,7 +341,7 @@ gearguard/
 │ └── 📄 gearguard.sql # Database schema & sample data
 │
 └── 📂 assets/
-└── 📂 images/ # Screenshots and logos
+└── 📂 images/ # Screenshots, logos, team photos
 
 text
 
@@ -325,116 +352,77 @@ text
 ### Main Tables
 
 #### **users**
-id (PK)
-
-name
-
-email (unique)
-
-password (hashed)
-
-role (admin/manager/technician)
-
-is_active
-
-created_at
-
-text
+| Field | Type | Description |
+|-------|------|-------------|
+| id (PK) | INT | Unique user identifier |
+| name | VARCHAR | Full name |
+| email (unique) | VARCHAR | Login email |
+| password (hashed) | VARCHAR | Bcrypt hashed password |
+| role | ENUM | admin/manager/technician/**user** |
+| is_active | BOOLEAN | Account status |
+| created_at | DATETIME | Registration timestamp |
 
 #### **equipment**
-id (PK)
-
-equipment_name
-
-serial_number (unique)
-
-category
-
-department
-
-location
-
-assigned_to_employee
-
-maintenance_team_id (FK)
-
-default_technician_id (FK)
-
-purchase_date
-
-warranty_expiry
-
-status
-
-created_at
-
-text
+| Field | Type | Description |
+|-------|------|-------------|
+| id (PK) | INT | Equipment ID |
+| equipment_name | VARCHAR | Asset name |
+| serial_number (unique) | VARCHAR | Unique serial |
+| category | VARCHAR | Equipment type |
+| department | VARCHAR | Department assignment |
+| location | VARCHAR | Physical location |
+| assigned_to_employee | VARCHAR | Employee name |
+| maintenance_team_id (FK) | INT | Assigned team |
+| default_technician_id (FK) | INT | Default tech |
+| purchase_date | DATE | Purchase date |
+| warranty_expiry | DATE | Warranty end date |
+| status | ENUM | Active/Under Maintenance/Scrapped |
+| created_at | DATETIME | Created timestamp |
 
 #### **maintenance_teams**
-id (PK)
-
-team_name
-
-description
-
-created_at
-
-text
+| Field | Type | Description |
+|-------|------|-------------|
+| id (PK) | INT | Team ID |
+| team_name | VARCHAR | Team name |
+| description | TEXT | Team description |
+| photo_url | VARCHAR | Team photo path |
+| social_links | JSON | Social media links |
+| created_at | DATETIME | Created timestamp |
 
 #### **team_members**
-id (PK)
-
-team_id (FK)
-
-user_id (FK)
-
-created_at
-
-text
+| Field | Type | Description |
+|-------|------|-------------|
+| id (PK) | INT | Member ID |
+| team_id (FK) | INT | Team reference |
+| user_id (FK) | INT | User reference |
+| created_at | DATETIME | Added timestamp |
 
 #### **maintenance_requests**
-id (PK)
-
-equipment_id (FK)
-
-created_by (FK)
-
-assigned_to (FK)
-
-subject
-
-description
-
-request_type (corrective/preventive)
-
-priority (low/medium/high/urgent)
-
-stage (new/in_progress/repaired/scrap)
-
-scheduled_date
-
-duration_hours
-
-completed_at
-
-created_at
-
-updated_at
-
-text
+| Field | Type | Description |
+|-------|------|-------------|
+| id (PK) | INT | Request ID |
+| equipment_id (FK) | INT | Equipment reference |
+| created_by (FK) | INT | Creator user ID |
+| assigned_to (FK) | INT | Assigned technician |
+| subject | VARCHAR | Request title |
+| description | TEXT | Detailed description |
+| request_type | ENUM | corrective/preventive |
+| priority | ENUM | low/medium/high/urgent |
+| stage | ENUM | new/in_progress/repaired/scrap |
+| scheduled_date | DATE | Scheduled date |
+| duration_hours | DECIMAL | Time spent |
+| completed_at | DATETIME | Completion timestamp |
+| created_at | DATETIME | Created timestamp |
+| updated_at | DATETIME | Last update timestamp |
 
 #### **request_history**
-id (PK)
-
-request_id (FK)
-
-action
-
-user_id (FK)
-
-created_at
-
-text
+| Field | Type | Description |
+|-------|------|-------------|
+| id (PK) | INT | History ID |
+| request_id (FK) | INT | Request reference |
+| action | VARCHAR | Action description |
+| user_id (FK) | INT | User who performed action |
+| created_at | DATETIME | Action timestamp |
 
 ---
 
@@ -445,12 +433,13 @@ text
 
 - ✅ All Manager permissions
 - ✅ User management (create, edit, delete users)
+- ✅ Assign roles (Admin, Manager, Technician, User)
 - ✅ System configuration
 - ✅ Database management
-- ✅ Access to all modules
+- ✅ Access to all modules and reports
 
 ### 🟡 Manager
-**Operational management**
+**Operational management and oversight**
 
 - ✅ View and manage all equipment
 - ✅ Create and assign maintenance requests
@@ -458,30 +447,58 @@ text
 - ✅ Schedule preventive maintenance
 - ✅ Access calendar and reports
 - ✅ Monitor all maintenance activities
+- ✅ **Drag-and-drop Kanban board** access
+- ✅ Update team photos and social links
 - ❌ Cannot manage users or system settings
 
 ### 🟢 Technician
-**Task execution**
+**Task execution and field work**
 
 - ✅ View assigned requests
 - ✅ Update status of assigned requests
 - ✅ Record work duration
-- ✅ Create new maintenance requests
-- ✅ Access Kanban board (assigned tasks only)
-- ❌ Cannot manage equipment, teams, or view reports
+- ✅ Create new corrective maintenance requests
+- ✅ **Drag-and-drop Kanban board** for assigned tasks
+- ✅ Access calendar for scheduled work
+- ❌ Cannot manage equipment, teams, or view full reports
+- ❌ Cannot schedule preventive maintenance
 - ❌ Limited to assigned work only
+
+### 🔵 User (Regular Employee)
+**Request creation and tracking**
+
+- ✅ **Create corrective maintenance requests** (report breakdowns)
+- ✅ **View all their own submitted requests** on "All Requests" page
+- ✅ **Read-only Kanban board** access (monitor request status without dragging)
+- ✅ View equipment assigned to them
+- ✅ **Dashboard with personal statistics** (total requests, pending, resolved)
+- ✅ Track request progress and history
+- ✅ View request details
+- ❌ **Cannot drag/drop cards** on Kanban board (CSS disabled)
+- ❌ Cannot assign requests to technicians
+- ❌ Cannot schedule preventive maintenance
+- ❌ Cannot manage equipment, teams, or users
+- ❌ Cannot access full reports or analytics
 
 ---
 
 ## 📸 Screenshots
 
-### Dashboard
+### Dashboard (Role-Specific)
 ![Dashboard](assets/images/dashboard.png)
-*Main dashboard with real-time statistics and quick actions*
+*Main dashboard with role-based statistics and quick actions*
 
-### Kanban Board
-![Kanban Board](assets/images/kanban.png)
+### Kanban Board (Draggable - Manager/Technician)
+![Kanban Board](assets/images/kanban-draggable.png)
 *Drag-and-drop interface for managing maintenance requests*
+
+### Kanban Board (Read-Only - User)
+![Read-Only Kanban](assets/images/kanban-readonly.png)
+*Non-draggable Kanban view for regular users to track their requests*
+
+### All Requests (User View)
+![User Requests](assets/images/user-requests.png)
+*Users can view and track all their submitted requests*
 
 ### Equipment Management
 ![Equipment List](assets/images/equipment.png)
@@ -495,16 +512,20 @@ text
 ![Reports](assets/images/reports.png)
 *Interactive charts and analytics dashboard*
 
+### Landing Page with Team
+![Landing Page](assets/images/landing-team.png)
+*Enhanced landing page with team photos and social links*
+
 ---
 
 ## 📡 API Documentation
 
 ### Authentication Required
-All API endpoints require authentication via PHP session.
+All API endpoints require authentication via PHP session with role-based access control.
 
 ### Available Endpoints
 
-#### User Management
+#### User Management (Admin Only)
 POST /php/api/create_user.php
 POST /php/api/update_user.php
 POST /php/api/delete_user.php
@@ -512,10 +533,11 @@ POST /php/api/toggle_user_status.php
 
 text
 
-#### Request Management
-POST /php/api/update_request_stage.php
-GET /php/api/get_requests.php
-POST /php/api/assign_request.php
+#### Request Management (All Roles)
+POST /php/api/update_request_stage.php # Manager/Technician only
+GET /php/api/get_requests.php # All roles (filtered by permissions)
+POST /php/api/assign_request.php # Manager only
+POST /php/api/create_request.php # All roles
 
 text
 
@@ -528,7 +550,8 @@ headers: {
 },
 body: JSON.stringify({
 request_id: 123,
-stage: 'in_progress'
+stage: 'in_progress',
+user_role: 'manager' // Role check for permissions
 })
 })
 .then(response => response.json())
@@ -545,7 +568,7 @@ We welcome contributions! Here's how you can help:
 ### How to Contribute
 
 1. **Fork the repository**
-git fork https://github.com/yourusername/gearguard.git
+git fork https://github.com/Rsmiyani/ODOO-HACKATHON.git
 
 text
 
@@ -572,6 +595,7 @@ text
 - Use meaningful variable and function names
 - Comment complex logic
 - Test thoroughly before submitting PR
+- Respect role-based permissions in new features
 - Update documentation if needed
 
 ### Bug Reports
@@ -580,6 +604,7 @@ Found a bug? Please open an issue with:
 - Clear description
 - Steps to reproduce
 - Expected vs actual behavior
+- Your user role when bug occurred
 - Screenshots (if applicable)
 
 ---
@@ -596,7 +621,15 @@ Found a bug? Please open an issue with:
 - [ ] Real-time chat for team collaboration
 - [ ] QR code scanning for equipment
 
-### Version 1.1 (In Progress)
+### Version 1.1 (✅ Completed)
+- [x] **User role implementation** with read-only Kanban
+- [x] **Dashboard statistics for all 4 roles**
+- [x] **All Requests page** showing user-created requests
+- [x] **CSS fixes for non-draggable cards** (user role)
+- [x] **Team photos and social links** on landing page
+- [x] **Registration with default user role**
+
+### Version 1.2 (In Progress)
 - [ ] Dark mode theme
 - [ ] Equipment maintenance schedule templates
 - [ ] Custom fields for equipment
@@ -622,14 +655,14 @@ text
 
 ## 📞 Contact
 
-**Project Maintainer**: Your Name
+**Project Maintainer**: Rudra Miyani
 
 - 📧 Email: your.email@example.com
-- 🐙 GitHub: [@yourusername](https://github.com/Rsmiyani)
-- 💼 LinkedIn: [Your Profile](https://www.linkedin.com/in/rudramiyani2024/)
-- 🌐 Website: [yourwebsite.com](https://yourwebsite.com)
+- 🐙 GitHub: [@Rsmiyani](https://github.com/Rsmiyani)
+- 💼 LinkedIn: [Rudra Miyani](https://www.linkedin.com/in/rudramiyani2024/)
+- 🌐 Website: yourwebsite.com
 
-**Project Link**: [https://github.com/yourusername/gearguard](https://github.com/Rsmiyani/ODOO-HACKATHON)
+**Project Link**: [https://github.com/Rsmiyani/ODOO-HACKATHON](https://github.com/Rsmiyani/ODOO-HACKATHON)
 
 ---
 
@@ -647,8 +680,8 @@ text
 
 If you found this project helpful, please give it a ⭐️ on GitHub!
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/gearguard?style=social)](https://github.com/yourusername/gearguard/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/gearguard?style=social)](https://github.com/yourusername/gearguard/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/Rsmiyani/ODOO-HACKATHON?style=social)](https://github.com/Rsmiyani/ODOO-HACKATHON/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Rsmiyani/ODOO-HACKATHON?style=social)](https://github.com/Rsmiyani/ODOO-HACKATHON/network/members)
 
 ---
 
@@ -659,83 +692,3 @@ If you found this project helpful, please give it a ⭐️ on GitHub!
 [⬆ Back to Top](#️-gearguard---the-ultimate-maintenance-tracker)
 
 </div>
-🎨 Additional Files to Add
-1. Create .gitignore
-text
-# Configuration files with sensitive data
-php/config.php
-
-# Database dumps
-*.sql
-database/backup/
-
-# Uploads directory
-uploads/*
-!uploads/.gitkeep
-
-# IDE files
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
-
-# OS files
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Logs
-*.log
-logs/
-
-# Temporary files
-tmp/
-temp/
-cache/
-
-# Environment files
-.env
-.env.local
-2. Create LICENSE file (MIT License)
-text
-MIT License
-
-Copyright (c) 2025 GearGuard
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-3. Create CONTRIBUTING.md
-text
-# Contributing to GearGuard
-
-Thank you for your interest in contributing! 
-
-## Code of Conduct
-Be respectful and professional in all interactions.
-
-## How to Contribute
-1. Fork the repo
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## Coding Standards
-- Follow PSR-12 for PHP
-- Use meaningful names
-- Comment complex logic
-- Test thoroughly
