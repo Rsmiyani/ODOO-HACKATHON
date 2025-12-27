@@ -156,6 +156,10 @@ function canPerform($action)
             'update_my_requests',
             'create_request',
             'view_my_team'
+        ],
+        'user' => [
+            'create_request',
+            'view_my_requests'
         ]
     ];
 
@@ -182,7 +186,8 @@ function getRoleDisplayName($role)
     $roleNames = [
         'admin' => 'Administrator',
         'manager' => 'Manager',
-        'technician' => 'Technician'
+        'technician' => 'Technician',
+        'user' => 'User'
     ];
     return $roleNames[$role] ?? ucfirst($role);
 }
@@ -193,7 +198,8 @@ function getRoleBadgeColor($role)
     $colors = [
         'admin' => 'red',
         'manager' => 'blue',
-        'technician' => 'green'
+        'technician' => 'green',
+        'user' => 'purple'
     ];
     return $colors[$role] ?? 'gray';
 }

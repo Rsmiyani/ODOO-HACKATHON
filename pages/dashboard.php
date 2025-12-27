@@ -50,6 +50,64 @@ try {
         ");
         $recentRequests = $stmt->fetchAll();
 
+    } elseif (hasRole('user')) {
+        // Regular users see only their own created requests
+        $userId = $user['id'];
+
+        // Hide equipment count for users
+        $totalEquipment = 0;
+
+        // Requests created by user
+        $stmt = $conn->prepare("
+            SELECT COUNT(*) as count 
+            FROM maintenance_requests 
+            WHERE created_by = ? AND stage IN ('new', 'in_progress')
+        ");
+        $stmt->execute([$userId]);
+        $pendingRequests = $stmt->fetch()['count'];
+
+        // Completed requests by user
+        $stmt = $conn->prepare("
+            SELECT COUNT(*) as count 
+            FROM maintenance_requests 
+            WHERE created_by = ? AND stage = 'repaired' AND DATE(updated_at) = CURDATE()
+        ");
+        $stmt->execute([$userId]);
+        $completedToday = $stmt->fetch()['count'];
+
+        // Overdue Requests created by user
+        $stmt = $conn->prepare("
+            SELECT COUNT(*) as count 
+            FROM maintenance_requests 
+            WHERE created_by = ? AND scheduled_date < NOW() AND stage IN ('new', 'in_progress')
+        ");
+        $stmt->execute([$userId]);
+        $overdueRequests = $stmt->fetch()['count'];
+
+        // Recent Requests created by user
+        $stmt = $conn->prepare("
+            SELECT 
+                mr.id,
+                mr.subject,
+                mr.stage,
+                mr.priority,
+                mr.request_type,
+                mr.scheduled_date,
+                mr.created_at,
+                e.equipment_name,
+                e.serial_number,
+                u.name as assigned_to_name,
+                creator.name as created_by_name
+            FROM maintenance_requests mr
+            INNER JOIN equipment e ON mr.equipment_id = e.id
+            LEFT JOIN users u ON mr.assigned_to = u.id
+            INNER JOIN users creator ON mr.created_by = creator.id
+            WHERE mr.created_by = ?
+            ORDER BY mr.created_at DESC
+            LIMIT 10
+        ");
+        $stmt->execute([$userId]);
+        $recentRequests = $stmt->fetchAll();
     } else {
         // Technicians see only their assigned data
         $userId = $user['id'];
@@ -131,6 +189,14 @@ try {
             FROM maintenance_requests 
             GROUP BY stage
         ");
+    } elseif (hasRole('user')) {
+        $stmt = $conn->prepare("
+            SELECT stage, COUNT(*) as count 
+            FROM maintenance_requests 
+            WHERE created_by = ?
+            GROUP BY stage
+        ");
+        $stmt->execute([$userId]);
     } else {
         $stmt = $conn->prepare("
             SELECT stage, COUNT(*) as count 
@@ -268,6 +334,8 @@ try {
                     <?php
                     if (hasRole('technician')) {
                         echo 'View your assigned maintenance tasks';
+                    } elseif (hasRole('user')) {
+                        echo 'View and manage your maintenance requests';
                     } else {
                         echo 'Overview of maintenance operations';
                     }
@@ -292,7 +360,8 @@ try {
                 </div>
                 <div class="stat-details">
                     <h3><?php echo $totalEquipment; ?></h3>
-                    <p><?php echo hasRole('technician') ? 'My Equipment' : 'Total Equipment'; ?></p>
+                    <p><?php echo hasRole('user') ? 'Requests Created' : (hasRole('technician') ? 'My Equipment' : 'Total Equipment'); ?>
+                    </p>
                 </div>
             </div>
 

@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm_password'];
-        $role = sanitizeInput($_POST['role'] ?? 'technician');
+        $role = sanitizeInput($_POST['role'] ?? 'user');
 
         // Validation Rules
         if (empty($name)) {
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Validate role
-        if (!in_array($role, ['admin', 'manager', 'technician'])) {
+        if (!in_array($role, ['admin', 'manager', 'technician', 'user'])) {
             $errors[] = "Invalid role selected";
         }
 
@@ -193,6 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             Role
                         </label>
                         <select id="role" name="role" required>
+                            <option value="user" <?php echo (!isset($_POST['role']) || $_POST['role'] == 'user') ? 'selected' : ''; ?>>User</option>
                             <option value="technician" <?php echo (isset($_POST['role']) && $_POST['role'] == 'technician') ? 'selected' : ''; ?>>Technician</option>
                             <option value="manager" <?php echo (isset($_POST['role']) && $_POST['role'] == 'manager') ? 'selected' : ''; ?>>Manager</option>
                             <option value="admin" <?php echo (isset($_POST['role']) && $_POST['role'] == 'admin') ? 'selected' : ''; ?>>Admin</option>

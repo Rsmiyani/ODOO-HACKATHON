@@ -41,6 +41,39 @@ try {
                 END,
                 mr.created_at DESC
         ");
+    } elseif (hasRole('user')) {
+        // Users see only requests they created
+        $stmt = $conn->prepare("
+            SELECT 
+                mr.id,
+                mr.subject,
+                mr.description,
+                mr.stage,
+                mr.priority,
+                mr.request_type,
+                mr.scheduled_date,
+                mr.created_at,
+                e.equipment_name,
+                e.serial_number,
+                e.category,
+                u.name as assigned_to_name,
+                u.id as assigned_to_id,
+                creator.name as created_by_name
+            FROM maintenance_requests mr
+            INNER JOIN equipment e ON mr.equipment_id = e.id
+            LEFT JOIN users u ON mr.assigned_to = u.id
+            INNER JOIN users creator ON mr.created_by = creator.id
+            WHERE mr.created_by = ?
+            ORDER BY 
+                CASE mr.priority
+                    WHEN 'urgent' THEN 1
+                    WHEN 'high' THEN 2
+                    WHEN 'medium' THEN 3
+                    WHEN 'low' THEN 4
+                END,
+                mr.created_at DESC
+        ");
+        $stmt->execute([$userId]);
     } else {
         // Technicians see only their assigned requests
         $stmt = $conn->prepare("
@@ -215,7 +248,7 @@ function isOverdue($scheduledDate, $stage)
             </button>
             <div>
                 <h1>Kanban Board</h1>
-                <p class="dashboard-subtitle">Drag and drop to update request status</p>
+                <p class="dashboard-subtitle"><?php echo hasRole('user') ? 'View your request status' : 'Drag and drop to update request status'; ?></p>
             </div>
             <div class="header-actions">
                 <?php if (canPerform('create_request')): ?>
@@ -247,7 +280,7 @@ function isOverdue($scheduledDate, $stage)
                         <?php
                         $isOverdue = isOverdue($request['scheduled_date'], $request['stage']);
                         ?>
-                        <div class="kanban-card <?php echo $isOverdue ? 'overdue' : ''; ?>" draggable="true"
+                        <div class="kanban-card <?php echo $isOverdue ? 'overdue' : ''; ?>" <?php echo !hasRole('user') ? 'draggable="true"' : ''; ?>
                             data-request-id="<?php echo $request['id']; ?>" data-stage="new">
 
                             <?php if ($isOverdue): ?>
@@ -337,7 +370,7 @@ function isOverdue($scheduledDate, $stage)
                         <?php
                         $isOverdue = isOverdue($request['scheduled_date'], $request['stage']);
                         ?>
-                        <div class="kanban-card <?php echo $isOverdue ? 'overdue' : ''; ?>" draggable="true"
+                        <div class="kanban-card <?php echo $isOverdue ? 'overdue' : ''; ?>" <?php echo !hasRole('user') ? 'draggable="true"' : ''; ?>
                             data-request-id="<?php echo $request['id']; ?>" data-stage="in_progress">
 
                             <?php if ($isOverdue): ?>
@@ -424,7 +457,7 @@ function isOverdue($scheduledDate, $stage)
                 </div>
                 <div class="kanban-cards" id="column-repaired">
                     <?php foreach ($requestsByStage['repaired'] as $request): ?>
-                        <div class="kanban-card" draggable="true" data-request-id="<?php echo $request['id']; ?>"
+                        <div class="kanban-card" <?php echo !hasRole('user') ? 'draggable="true"' : ''; ?> data-request-id="<?php echo $request['id']; ?>"
                             data-stage="repaired">
 
                             <div class="card-header">
@@ -504,7 +537,7 @@ function isOverdue($scheduledDate, $stage)
                 </div>
                 <div class="kanban-cards" id="column-scrap">
                     <?php foreach ($requestsByStage['scrap'] as $request): ?>
-                        <div class="kanban-card" draggable="true" data-request-id="<?php echo $request['id']; ?>"
+                        <div class="kanban-card" <?php echo !hasRole('user') ? 'draggable="true"' : ''; ?> data-request-id="<?php echo $request['id']; ?>"
                             data-stage="scrap">
 
                             <div class="card-header">

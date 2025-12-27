@@ -36,6 +36,27 @@ try {
             INNER JOIN users creator ON mr.created_by = creator.id
             WHERE 1=1
         ";
+    } elseif (hasRole('user')) {
+        // Users see only requests they created
+        $sql = "
+            SELECT 
+                mr.id,
+                mr.subject,
+                mr.stage,
+                mr.priority,
+                mr.request_type,
+                mr.scheduled_date,
+                mr.created_at,
+                e.equipment_name,
+                e.serial_number,
+                u.name as assigned_to_name,
+                creator.name as created_by_name
+            FROM maintenance_requests mr
+            INNER JOIN equipment e ON mr.equipment_id = e.id
+            LEFT JOIN users u ON mr.assigned_to = u.id
+            INNER JOIN users creator ON mr.created_by = creator.id
+            WHERE mr.created_by = ?
+        ";
     } else {
         // Technicians see only their assigned requests
         $sql = "
@@ -60,7 +81,7 @@ try {
     }
 
     $params = [];
-    if (hasRole('technician')) {
+    if (hasRole('technician') || hasRole('user')) {
         $params[] = $user['id'];
     }
 
