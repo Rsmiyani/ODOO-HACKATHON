@@ -625,11 +625,11 @@ text
 **Project Maintainer**: Your Name
 
 - 📧 Email: your.email@example.com
-- 🐙 GitHub: [@yourusername](https://github.com/yourusername)
-- 💼 LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
+- 🐙 GitHub: [@yourusername](https://github.com/Rsmiyani)
+- 💼 LinkedIn: [Your Profile](https://www.linkedin.com/in/rudramiyani2024/)
 - 🌐 Website: [yourwebsite.com](https://yourwebsite.com)
 
-**Project Link**: [https://github.com/yourusername/gearguard](https://github.com/yourusername/gearguard)
+**Project Link**: [https://github.com/yourusername/gearguard](https://github.com/Rsmiyani/ODOO-HACKATHON)
 
 ---
 
