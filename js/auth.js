@@ -1,4 +1,4 @@
-// Toggle password visibility
+
 function togglePassword(inputId) {
     const input = document.getElementById(inputId);
     const button = input.parentElement.querySelector('.toggle-password');
