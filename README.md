@@ -17,7 +17,7 @@
 
 ---
 
-## 📋 Table of Content
+## 📋 Table of Contents
 
 - [About](#-about)
 - [Features](#-features)
