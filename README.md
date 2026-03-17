@@ -152,7 +152,7 @@ Before you begin, ensure you have:
 - PHP 8.0 or higher
 - MySQL 8.0 or higher
 - Apache/Nginx web server
-- Composer (optional, for future extensions)
+  
 
 ### Step 1: Clone the Repository
 
